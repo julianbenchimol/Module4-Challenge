@@ -9,6 +9,34 @@ var questions = {
         answer3: ["HyperText Markup Language", true],
         answer4: ["Help Tony Make Lasagna", false]
     },
+    question2: {
+        text: "Qustion 2: With CSS, how do you select an element with class 'cool-guy'?",
+        answer1: [".cool-guy", true],
+        answer2: ["#cool-guy", false],
+        answer3: ["class.cool-guy", false],
+        answer4: ["cool-guy.class", false]
+    },
+    question3: {
+        text:"Question 3: What does position: absolute; do?",
+        answer1: ["Sets position relative to parent", false],
+        answer2: ["Nothing. It's the normal position", false],
+        answer3: ["Sets position relative to its normal position", false],
+        answer4: ["Sets position relative to the viewport", true]
+    },
+    question4: {
+        text:"Question 4: What is the flex-flow shorthand?",
+        answer1: ["Quickly assign flex direct and wrap", true],
+        answer2: ["Quickly align items within the flex box", false],
+        answer3: ["Quickly justifies all items to the center of the flex box", false],
+        answer4: ["Quickly adds space between all flex items within the flex box", false]
+    },
+    question5: {
+        text:"Question 5: Where is the BEST place assign variables for CSS?",
+        answer1: ["It doesn't matter where you assign them", false],
+        answer2: ["Within the selector its used", false],
+        answer3: [" Directly above the selector where its being used", false],
+        answer4: ["Within the :root psuedo class", true]
+    }
 }
 //var properties = Object.keys(questions).length;
 
@@ -32,14 +60,18 @@ var highscoreArray = new Array(); //store in local storage using stringify(array
 startbuttonElement.addEventListener('click', InitializeGame);
 resetButtonElement.addEventListener('click', ResetGame);
 
-function InitializeGame(){
+//sets the displays to show properly
+startDisplayElement.setAttribute("style", "display: block");
+mainDisplayElement.setAttribute("style", "display: none");
+scoreDisplayElement.setAttribute("style", "display: none");
 
+function InitializeGame(){
     //sets the display to hide the start display and show the main display
     startDisplayElement.setAttribute("style", "display: none");
     mainDisplayElement.setAttribute("style", "display: block");
     scoreDisplayElement.setAttribute("style", "display: none");
-    
-    //sets variables to default
+
+    //sets timeLeft to default
     timeLeft = 30;
     SetTime();
 }
@@ -57,7 +89,7 @@ function SetTime(){
         }
     },1000);
 }
-
+//resets the displays
 function ResetGame(){
     
     //sets the states of each display to default
