@@ -13,30 +13,32 @@
             <h1 id = "main-h1">Welcome to the Code Quiz!</h1>
         </header>
 
-        <!--Start Display-->
+        <!--Start Display--><!--!This should be shown at the start-->
         <section class = "game-display" id = "start-display" data-state = "shown">
             <div class = "game-text">Test yourself against a time limit to answer all the questions!</div>
             <button class = "game-button" id = "start-game">Start Quiz</button>
+            
         </section>
 
-        <!--Game Display-->
-        <section class = "game-display" id = "main-display" data-state="hidden">
+        <!--Game Display--><!--!This should hide the main display-->
+        <section class = "game-display" id = "main-display" data-state="hidden"> <!--!This should hide the other displays-->
             <div class = "game-text" id = "question-display">This is where the question will be displayed</div> <!--!Should be centered on the page-->
-                <div class = "game-text" id = "questions-left">This is how many questions are left</div>
+                <div>Questions Left: </div><div class = "game-text" id = "questions-left"></div><!--!Make this Inline-->
                 <div class = "game-button" id = "button-holder">This is where the buttons are held</div><!--!use JS to add buttons here-->
-            <div class = "game-text" id = "timer-display">This is the timer element</div>
+            <div>Time Remaining: </div><div class = "game-text" id = "timer-display"></div> <!--!Make this Inline-->
             <div class = "game-text" id = "score-show">Click this to display high scores</div>
         </section>
 
-        <!--High Score Display-->
+        <!--High Score Display--><!--!This should hide the main display-->
         <section class="game-display" id = "score-display" data-state="hidden">
             <div class = "game-text">These are the top 5 high scores</div>
                 <div class="game-text" id = "score-holder">This holds the scores</div> 
             <button class = "game-button" id = "clear-scores">Clear Scores</button>
             <button class = "game-button" id = "back-button">Go Back</button>
-        </section> <!--!This should hide the main display-->
+        </section> 
 
-
-        <script src = “./assets/JS/MainScript.js”></script>
+        <button id = "reset">Reset Game</button>
+        <script src = "assets/JS/MainScript.js"></script>
+        
     </Body>
 </html>
