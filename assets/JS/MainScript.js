@@ -3,7 +3,6 @@ var questions = {
     //example questions
     //create buttons based on these choices
     question1: {
-        text: "Qustion 1: What does HTML stand for?",
         answer1: ["Hyper-Tonic Maximum Love", false],
         answer2: ["Huge Turtles Meet Luke", false],
         answer3: ["HyperText Markup Language", true],
@@ -48,13 +47,23 @@ var displayScoreElement = document.querySelector("#score-show");
 var startDisplayElement = document.querySelector("#start-display");
 var mainDisplayElement = document.querySelector("#main-display");
 var scoreDisplayElement = document.querySelector("#score-display");
+var buttonHolderElement = document.querySelector("#button-holder");
 
+//button elements
 var startbuttonElement = document.querySelector("#start-game");
 var resetButtonElement = document.querySelector("#reset");
 
 //gameplay variables
 var timeLeft;
 var highscoreArray = new Array(); //store in local storage using stringify(arrayName)
+var questionNumber;
+var currentQuestion = new Array();
+var questionText;
+var rightAnswer;
+var answer1;
+var answer2;
+var answer3;
+var answer4;
 
 //event listeners
 startbuttonElement.addEventListener('click', InitializeGame);
@@ -73,7 +82,9 @@ function InitializeGame(){
 
     //sets timeLeft to default
     timeLeft = 30;
+    questionNumber = 0;
     SetTime();
+    ConstructQuestion();
 }
 
 function SetTime(){
@@ -89,6 +100,40 @@ function SetTime(){
         }
     },1000);
 }
+//Builds the question view
+function ConstructQuestion(){
+
+    for(var i = 0; i < Object.keys(questions).length; i++){
+        if(Object.keys(questions)[i] === 'question1'){
+            questionNumber = 1;
+            questionText = "Qustion 1: What does HTML stand for?";
+            SetCurrentQuestion(questions.question1);
+        }
+    }
+
+}
+
+function SetCurrentQuestion(questionObject){
+    if(questionNumber === 1){
+        questionDisplayElement.textContent = questionText;
+        for(var i in questionObject){
+
+            currentQuestion = currentQuestion.concat(Object.values(questionObject[i]));
+
+            var answerElement = document.createElement('button');
+            answerElement.classList.add('answer-button');
+            buttonHolderElement.appendChild(answerElement);
+
+            for(var i = 0; i < currentQuestion.length; i++){ 
+                if(i % 2 === 0){
+                    answerElement.textContent = currentQuestion[i];
+                }
+            }
+        }
+        questionNumber++;
+    }
+}
+
 //resets the displays
 function ResetGame(){
     

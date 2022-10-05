@@ -12,7 +12,7 @@
     - [x] Change the states of each display when start button is pressed
     - [x] Timer interval is created and displays
 - [ ] Show the Questions:
-    - [x] Add questions into object
+    - [] Add questions into object
     - [ ] Gets the question object at each section
     - [ ] Displays the question text
     - [ ] Creates buttons assigned to each answer
