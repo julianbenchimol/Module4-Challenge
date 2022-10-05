@@ -128,9 +128,13 @@ function SetCurrentQuestion(questionObject){
                 if(i % 2 === 0){
                     answerElement.textContent = currentQuestion[i];
                 }
+                if(i % 2 === 1){
+                    answerElement.setAttribute("data-state", currentQuestion[i]);
+                    
+                }
             }
         }
-        questionNumber++;
+        //questionNumber++;
     }
 }
 
