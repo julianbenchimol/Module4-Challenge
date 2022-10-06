@@ -12,10 +12,11 @@
     - [x] Change the states of each display when start button is pressed
     - [x] Timer interval is created and displays
 - [ ] Show the Questions:
-    - [] Add questions into object
-    - [ ] Gets the question object at each section
-    - [ ] Displays the question text
-    - [ ] Creates buttons assigned to each answer
+    - [X] Add questions into object
+    - [X] Gets the question object at each section
+    - [x] Displays the question text
+    - [x] Creates buttons assigned to each answer
+    - [ ] Continue to next question when answer is chosen
     - [ ] Players choose a button and have a correct/incorrect text
     - [ ] Track correct and incorrect guesses throughout the game
     - [ ] Display the amount of questions left
