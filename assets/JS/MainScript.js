@@ -48,6 +48,7 @@ var startDisplayElement = document.querySelector("#start-display");
 var mainDisplayElement = document.querySelector("#main-display");
 var scoreDisplayElement = document.querySelector("#score-display");
 var buttonHolderElement = document.querySelector("#button-holder");
+var answerElement;
 
 //button elements
 var startbuttonElement = document.querySelector("#start-game");
@@ -119,7 +120,7 @@ function SetCurrentQuestion(questionObject){
 
             currentQuestion = currentQuestion.concat(Object.values(questionObject[i]));
 
-            var answerElement = document.createElement('button');
+            answerElement = document.createElement('button');
             answerElement.classList.add('answer-button');
             buttonHolderElement.appendChild(answerElement);
 
@@ -129,25 +130,20 @@ function SetCurrentQuestion(questionObject){
                 }
                 if(i % 2 === 1){
                     answerElement.setAttribute("data-correct", currentQuestion[i]);
+
                 }
-            }   
-            CheckAnswer(answerElement);
+            }
+            console.log(answerElement.getAttribute("data-correct"));  
+            //answerElement.addEventListener('click', CheckAnswer);
         }
     }
 }
 
-//checks if answer chosen is correct
-function CheckAnswer(choice){
-    choice.addEventListener('click', function() {
-        var answerCorrect = choice.getAttribute("data-correct");
-        console.log(answerCorrect);
-        if(answerCorrect){
-            alert("right answer");
-        }
+/*
+function CheckAnswer(){
+    console.log(answerElement.getAttribute("data-correct"));  
+} */
 
-    });
-    questionNumber++;
-}
 //resets the displays
 function ResetGame(){
     
