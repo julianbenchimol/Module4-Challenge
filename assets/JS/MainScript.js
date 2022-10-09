@@ -110,7 +110,6 @@ function ConstructQuestion(){
             SetCurrentQuestion(questions.question1);
         }
     }
-
 }
 
 function SetCurrentQuestion(questionObject){
@@ -129,15 +128,26 @@ function SetCurrentQuestion(questionObject){
                     answerElement.textContent = currentQuestion[i];
                 }
                 if(i % 2 === 1){
-                    answerElement.setAttribute("data-state", currentQuestion[i]);
-                    
+                    answerElement.setAttribute("data-correct", currentQuestion[i]);
                 }
-            }
+            }   
+            CheckAnswer(answerElement);
         }
-        //questionNumber++;
     }
 }
 
+//checks if answer chosen is correct
+function CheckAnswer(choice){
+    choice.addEventListener('click', function() {
+        var answerCorrect = choice.getAttribute("data-correct");
+        console.log(answerCorrect);
+        if(answerCorrect){
+            alert("right answer");
+        }
+
+    });
+    questionNumber++;
+}
 //resets the displays
 function ResetGame(){
     
