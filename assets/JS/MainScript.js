@@ -75,6 +75,14 @@ startDisplayElement.setAttribute("style", "display: block");
 mainDisplayElement.setAttribute("style", "display: none");
 scoreDisplayElement.setAttribute("style", "display: none");
 
+buttonHolderElement.addEventListener('click', function(event){
+    var clickClass = event.target.getAttribute("class");
+
+    if(clickClass === "answer-button"){
+        CheckAnswer(event.target);
+    }
+});
+
 function InitializeGame(){
     //sets the display to hide the start display and show the main display
     startDisplayElement.setAttribute("style", "display: none");
@@ -106,43 +114,49 @@ function ConstructQuestion(){
 
     for(var i = 0; i < Object.keys(questions).length; i++){
         if(Object.keys(questions)[i] === 'question1'){
-            questionNumber = 1;
             questionText = "Qustion 1: What does HTML stand for?";
-            SetCurrentQuestion(questions.question1);
+        }
+        else if(Object.keys(questions)[i] === 'question2'){
+            questionText = "Qustion 1: What does HTML stand for?";
         }
     }
+    SetCurrentQuestion(questions.question1);
 }
 
 function SetCurrentQuestion(questionObject){
-    if(questionNumber === 1){
-        questionDisplayElement.textContent = questionText;
-        for(var i in questionObject){
+    questionDisplayElement.textContent = questionText;
 
-            currentQuestion = currentQuestion.concat(Object.values(questionObject[i]));
+    for(var i in questionObject){
 
-            answerElement = document.createElement('button');
-            answerElement.classList.add('answer-button');
-            buttonHolderElement.appendChild(answerElement);
+        currentQuestion = currentQuestion.concat(Object.values(questionObject[i]));
 
-            for(var i = 0; i < currentQuestion.length; i++){ 
-                if(i % 2 === 0){
-                    answerElement.textContent = currentQuestion[i];
-                }
-                if(i % 2 === 1){
-                    answerElement.setAttribute("data-correct", currentQuestion[i]);
+        answerElement = document.createElement('button');
+        answerElement.classList.add('answer-button');
+        buttonHolderElement.appendChild(answerElement);
 
-                }
+        
+        for(var i = 0; i < currentQuestion.length; i++){ 
+            if(i % 2 === 0){
+                answerElement.textContent = currentQuestion[i];
             }
-            console.log(answerElement.getAttribute("data-correct"));  
-            //answerElement.addEventListener('click', CheckAnswer);
+            if(i % 2 === 1){
+                answerElement.setAttribute("data-correct", currentQuestion[i]);
+            }
         }
     }
 }
 
-/*
-function CheckAnswer(){
-    console.log(answerElement.getAttribute("data-correct"));  
-} */
+function CheckAnswer(buttonClicked){
+    var isCorrect = buttonClicked.getAttribute('data-correct');
+
+    if(isCorrect === 'true'){
+        console.log(isCorrect);
+    }
+    if(isCorrect === 'false'){
+        console.log(isCorrect);
+    }
+    questionNumber++;
+}
 
 //resets the displays
 function ResetGame(){
