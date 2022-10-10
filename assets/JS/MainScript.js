@@ -47,6 +47,8 @@ var endScreenElement = document.querySelector("#score-input-display");
 var incorrectElement = document.querySelector("#incorrect");
 var correctElement = document.querySelector("#correct");
 var initialInputElement = document.querySelector("#initial-input");
+var initialTextElement = document.querySelector("#initial-text");
+var highscoreElement = document.querySelector("#highscores");
 
 var answerElement;
 
@@ -54,6 +56,7 @@ var answerElement;
 var startbuttonElement = document.querySelector("#start-game");
 var resetButtonElement = document.querySelector("#reset");
 var endGameButton = document.querySelector("#end-game");
+var submitButton = document.querySelector("#submit-button");
 
 //gameplay variables
 var timeLeft;
@@ -62,12 +65,12 @@ var questionNumber;
 var currentQuestion = new Array();
 var correct;
 var incorrect;
-var playerInitials = initialInputElement.values;
+var playerInitials;
 
 //event listeners
 startbuttonElement.addEventListener('click', InitializeGame);
-resetButtonElement.addEventListener('click', ResetGame);
-endGameButton.addEventListener('click', ShowEndGame);
+/*resetButtonElement.addEventListener('click', ResetGame);
+endGameButton.addEventListener('click', ShowEndGame);*/
 
 
 //sets the displays to show properly
@@ -83,6 +86,12 @@ buttonHolderElement.addEventListener('click', function(event){
         CheckAnswer(event.target);
     }
 });
+
+submitButton.addEventListener('click', function(event){
+    event.preventDefault();
+    SubmitScores();
+});
+
 //initializes the game and sets default values for variables
 function InitializeGame(){
     //sets the display to hide the start display and show the main display
@@ -95,6 +104,7 @@ function InitializeGame(){
     questionNumber = 1;
     correct = 0;
     incorrect = 0;
+
     SetTime();
     ConstructQuestion();
 }
@@ -187,10 +197,49 @@ function CheckAnswer(buttonClicked){
 //!finish endgame function to show score screen properly, and get user input for initials
 function EndGame(){
     ShowEndGame();
-    console.log('correct: ' + correct + 'incorrect: ' + incorrect);
+
     correctElement.textContent = correct;
     incorrectElement.textContent = incorrect;
 }
+function SubmitScores(){
+    var userInitials = document.getElementById("initial-input").value;
+    var finalScore = correct-incorrect;
+
+    if(finalScore <= 0){
+        finalScore = 0;
+    }
+
+    highscoreArray.push(userInitials);
+    highscoreArray.push(finalScore);
+    JSON.stringify(highscoreArray);
+    localStorage.setItem('highscore', highscoreArray);
+
+    ResetGame();
+    //HighScoreDisplay();
+}
+
+/*function HighScoreDisplay(){
+    startDisplayElement.setAttribute("style", "display: none");
+    mainDisplayElement.setAttribute("style", "display: none");
+    scoreDisplayElement.setAttribute("style", "display: block");
+    endScreenElement.setAttribute("style", "display: none");
+
+    highscoreArray = localStorage.getItem('highscore');
+    JSON.parse(highscoreArray);
+
+    for(var i = 0; i < highscoreArray.length; i ++){
+        if(i%2===0){
+            var initialElement = document.createElement('li');
+            initialElement.setAttributeNS('class', 'game-text', 'id', 'initials');
+            initialTextElement.appendChild(initialElement);
+            initialElement.textContent = highscoreArray[i];
+        }
+        if(i%2 === 1){
+            console.log(highscoreArray[i]);
+        }
+    }
+
+}*/
 //resets the displays
 function ResetGame(){
     

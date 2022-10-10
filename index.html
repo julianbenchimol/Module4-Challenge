@@ -36,21 +36,28 @@
             <div class = "game-text"> Number Incorrect: </div><div class = "game-text" id = "incorrect"></div>
 
             <div class = "game-text" id = "initial-prompt"> Enter your Initials to save your score!</div>
-            <input type="text" id="initial-input">
-            <button class = "game-button" id = "save-score-button">Save Score</button>
+            <form class = "game-text" id = "score-form">
+                <input type="text" id="initial-input">
+                <button class = "game-button" id = "submit-button">Submit</button>
+            </form>
         </section>
 
-        <!--High Score Display--><!--!This should hide the main display-->
+        <!--High Score Display-->
         <section class="game-display" id = "score-display">
-            <div class = "game-text">These are the top 5 high scores</div>
-                <div class="game-text" id = "score-holder">This holds the scores</div> 
+            <div class = "game-text" id = "score-holder">These are the top 5 high scores
+
+                <ol class = "game-text" id = "initial-text"></ol>
+                <ol class = "game-tect" id = "highscores"></ol>
+
+            </div>
+
             <button class = "game-button" id = "clear-scores">Clear Scores</button>
             <button class = "game-button" id = "back-button">Go Back</button>
         </section> 
 
-        <button id = "reset">Reset Game</button>
-        <button id = "end-game">end game screen</button>
-        <script src = "assets/JS/MainScript.js"></script>
+       <!-- <button id = "reset">Reset Game</button>
+        <button id = "end-game">end game screen</button> -->
+        <script src = "assets/JS/MainScript.js"></script> 
         
     </Body>
 </html>
