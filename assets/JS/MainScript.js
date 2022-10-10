@@ -21,7 +21,7 @@ var questions = {
         answer4: ["Sets position relative to the viewport", true]
     },
     question4: {
-        answer1: ["Quickly assign flex direct and wrap", true],
+        answer1: ["Quickly assign flex direction and wrap", true],
         answer2: ["Quickly align items within the flex box", false],
         answer3: ["Quickly justifies all items to the center of the flex box", false],
         answer4: ["Quickly adds space between all flex items within the flex box", false]
@@ -198,8 +198,8 @@ function CheckAnswer(buttonClicked){
 function EndGame(){
     ShowEndGame();
 
-    correctElement.textContent = correct;
-    incorrectElement.textContent = incorrect;
+    correctElement.textContent = 'Number Correct: '+ correct;
+    incorrectElement.textContent = 'Number Incorrect: ' + incorrect;
 }
 function SubmitScores(){
     var userInitials = document.getElementById("initial-input").value;

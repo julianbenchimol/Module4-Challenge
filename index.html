@@ -22,18 +22,16 @@
 
         <!--Game Display-->
         <section class = "game-display" id = "main-display">
-            <div class = "game-text" id = "question-display"></div> <!--!Should be centered on the page-->
-                <div>Questions Left: </div><div class = "game-text" id = "questions-left"></div><!--!Make this Inline-->
-                <div class = "game-button" id = "button-holder"></div>
-            <div>Time Remaining: </div><div class = "game-text" id = "timer-display"></div> <!--!Make this Inline-->
-            <div class = "game-text" id = "score-show">Click this to display high scores</div>
+            <div class = "game-text" id = "question-display"></div>
+                <div id = "button-holder"></div>
+            <div id = 'time-remaining'>Time Remaining: </div><div class = "game-text" id = "timer-display">30s</div>
         </section>
 
         <!--Score Input Display-->
         <section class="game-display" id = "score-input-display">
 
-            <div class = "game-text">Number Correct: </div><div class = "game-text" id = "correct"></div>
-            <div class = "game-text"> Number Incorrect: </div><div class = "game-text" id = "incorrect"></div>
+            <div class = "game-text" id = "correct"></div>
+            <div class = "game-text" id = "incorrect"></div>
 
             <div class = "game-text" id = "initial-prompt"> Enter your Initials to save your score!</div>
             <form class = "game-text" id = "score-form">
