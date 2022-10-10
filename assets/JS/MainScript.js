@@ -9,28 +9,24 @@ var questions = {
         answer4: ["Help Tony Make Lasagna", false]
     },
     question2: {
-        text: "Qustion 2: With CSS, how do you select an element with class 'cool-guy'?",
         answer1: [".cool-guy", true],
         answer2: ["#cool-guy", false],
         answer3: ["class.cool-guy", false],
         answer4: ["cool-guy.class", false]
     },
     question3: {
-        text:"Question 3: What does position: absolute; do?",
         answer1: ["Sets position relative to parent", false],
         answer2: ["Nothing. It's the normal position", false],
         answer3: ["Sets position relative to its normal position", false],
         answer4: ["Sets position relative to the viewport", true]
     },
     question4: {
-        text:"Question 4: What is the flex-flow shorthand?",
         answer1: ["Quickly assign flex direct and wrap", true],
         answer2: ["Quickly align items within the flex box", false],
         answer3: ["Quickly justifies all items to the center of the flex box", false],
         answer4: ["Quickly adds space between all flex items within the flex box", false]
     },
     question5: {
-        text:"Question 5: Where is the BEST place assign variables for CSS?",
         answer1: ["It doesn't matter where you assign them", false],
         answer2: ["Within the selector its used", false],
         answer3: [" Directly above the selector where its being used", false],
@@ -59,12 +55,6 @@ var timeLeft;
 var highscoreArray = new Array(); //store in local storage using stringify(arrayName)
 var questionNumber;
 var currentQuestion = new Array();
-var questionText;
-var rightAnswer;
-var answer1;
-var answer2;
-var answer3;
-var answer4;
 
 //event listeners
 startbuttonElement.addEventListener('click', InitializeGame);
@@ -82,7 +72,7 @@ buttonHolderElement.addEventListener('click', function(event){
         CheckAnswer(event.target);
     }
 });
-
+//initializes the game and sets default values for variables
 function InitializeGame(){
     //sets the display to hide the start display and show the main display
     startDisplayElement.setAttribute("style", "display: none");
@@ -91,11 +81,11 @@ function InitializeGame(){
 
     //sets timeLeft to default
     timeLeft = 30;
-    questionNumber = 0;
+    questionNumber = 1;
     SetTime();
     ConstructQuestion();
 }
-
+//sets the timer
 function SetTime(){
  
     var timerInterval = setInterval(function(){
@@ -111,18 +101,34 @@ function SetTime(){
 }
 //Builds the question view
 function ConstructQuestion(){
-
     for(var i = 0; i < Object.keys(questions).length; i++){
-        if(Object.keys(questions)[i] === 'question1'){
+        if(Object.keys(questions)[i] === 'question1' && questionNumber === 1){
             questionText = "Qustion 1: What does HTML stand for?";
+            SetCurrentQuestion(questions.question1);
         }
-        else if(Object.keys(questions)[i] === 'question2'){
-            questionText = "Qustion 1: What does HTML stand for?";
+        else if(Object.keys(questions)[i] === 'question2' && questionNumber === 2){
+            questionText = "Qustion 2: With CSS, how do you select an element with class 'cool-guy'?";
+            SetCurrentQuestion(questions.question2);
+        }
+        else if(Object.keys(questions)[i] === 'question3' && questionNumber === 3){
+            questionText = "Question 3: What does position: absolute; do?";
+            SetCurrentQuestion(questions.question3);
+        }
+        else if(Object.keys(questions)[i] === 'question4' && questionNumber === 4){
+            questionText ="Question 4: What is the flex-flow shorthand?",
+            SetCurrentQuestion(questions.question4);
+        }
+        else if(Object.keys(questions)[i] === 'question5' && questionNumber === 5){
+            questionText = "Question 5: Where is the BEST place assign variables for CSS?";
+            SetCurrentQuestion(questions.question5);
+        }
+        else if (questionNumber < 5){
+            EndGame();
         }
     }
-    SetCurrentQuestion(questions.question1);
+    
 }
-
+//creates the buttons and adds text and data to each
 function SetCurrentQuestion(questionObject){
     questionDisplayElement.textContent = questionText;
 
@@ -145,7 +151,7 @@ function SetCurrentQuestion(questionObject){
         }
     }
 }
-
+//checks if the button clicked is true or false
 function CheckAnswer(buttonClicked){
     var isCorrect = buttonClicked.getAttribute('data-correct');
 
@@ -156,6 +162,8 @@ function CheckAnswer(buttonClicked){
         console.log(isCorrect);
     }
     questionNumber++;
+    buttonHolderElement.textContent = '';
+    ConstructQuestion();
 }
 
 //resets the displays
