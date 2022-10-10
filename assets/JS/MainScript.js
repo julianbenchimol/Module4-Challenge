@@ -33,7 +33,6 @@ var questions = {
         answer4: ["Within the :root psuedo class", true]
     }
 }
-//var properties = Object.keys(questions).length;
 
 //HTML Elements
 var questionDisplayElement = document.querySelector("#question-display");
@@ -44,26 +43,38 @@ var startDisplayElement = document.querySelector("#start-display");
 var mainDisplayElement = document.querySelector("#main-display");
 var scoreDisplayElement = document.querySelector("#score-display");
 var buttonHolderElement = document.querySelector("#button-holder");
+var endScreenElement = document.querySelector("#score-input-display");
+var incorrectElement = document.querySelector("#incorrect");
+var correctElement = document.querySelector("#correct");
+var initialInputElement = document.querySelector("#initial-input");
+
 var answerElement;
 
 //button elements
 var startbuttonElement = document.querySelector("#start-game");
 var resetButtonElement = document.querySelector("#reset");
+var endGameButton = document.querySelector("#end-game");
 
 //gameplay variables
 var timeLeft;
 var highscoreArray = new Array(); //store in local storage using stringify(arrayName)
 var questionNumber;
 var currentQuestion = new Array();
+var correct;
+var incorrect;
+var playerInitials = initialInputElement.values;
 
 //event listeners
 startbuttonElement.addEventListener('click', InitializeGame);
 resetButtonElement.addEventListener('click', ResetGame);
+endGameButton.addEventListener('click', ShowEndGame);
+
 
 //sets the displays to show properly
 startDisplayElement.setAttribute("style", "display: block");
 mainDisplayElement.setAttribute("style", "display: none");
 scoreDisplayElement.setAttribute("style", "display: none");
+endScreenElement.setAttribute("style", "display: none");
 
 buttonHolderElement.addEventListener('click', function(event){
     var clickClass = event.target.getAttribute("class");
@@ -82,6 +93,8 @@ function InitializeGame(){
     //sets timeLeft to default
     timeLeft = 30;
     questionNumber = 1;
+    correct = 0;
+    incorrect = 0;
     SetTime();
     ConstructQuestion();
 }
@@ -95,7 +108,7 @@ function SetTime(){
 
         if(timeLeft === 0){
             clearInterval(timerInterval);
-            //EndGame();
+            EndGame();
         }
     },1000);
 }
@@ -103,26 +116,31 @@ function SetTime(){
 function ConstructQuestion(){
     for(var i = 0; i < Object.keys(questions).length; i++){
         if(Object.keys(questions)[i] === 'question1' && questionNumber === 1){
+            console.log(questionNumber);
             questionText = "Qustion 1: What does HTML stand for?";
             SetCurrentQuestion(questions.question1);
         }
         else if(Object.keys(questions)[i] === 'question2' && questionNumber === 2){
+            console.log(questionNumber);
             questionText = "Qustion 2: With CSS, how do you select an element with class 'cool-guy'?";
             SetCurrentQuestion(questions.question2);
         }
         else if(Object.keys(questions)[i] === 'question3' && questionNumber === 3){
+            console.log(questionNumber);
             questionText = "Question 3: What does position: absolute; do?";
             SetCurrentQuestion(questions.question3);
         }
         else if(Object.keys(questions)[i] === 'question4' && questionNumber === 4){
+            console.log(questionNumber);
             questionText ="Question 4: What is the flex-flow shorthand?",
             SetCurrentQuestion(questions.question4);
         }
         else if(Object.keys(questions)[i] === 'question5' && questionNumber === 5){
+            console.log(questionNumber);
             questionText = "Question 5: Where is the BEST place assign variables for CSS?";
             SetCurrentQuestion(questions.question5);
         }
-        else if (questionNumber < 5){
+        else if (questionNumber > 5){
             EndGame();
         }
     }
@@ -156,16 +174,23 @@ function CheckAnswer(buttonClicked){
     var isCorrect = buttonClicked.getAttribute('data-correct');
 
     if(isCorrect === 'true'){
-        console.log(isCorrect);
+        correct++;
     }
     if(isCorrect === 'false'){
-        console.log(isCorrect);
+        incorrect++;
     }
     questionNumber++;
     buttonHolderElement.textContent = '';
     ConstructQuestion();
 }
 
+//!finish endgame function to show score screen properly, and get user input for initials
+function EndGame(){
+    ShowEndGame();
+    console.log('correct: ' + correct + 'incorrect: ' + incorrect);
+    correctElement.textContent = correct;
+    incorrectElement.textContent = incorrect;
+}
 //resets the displays
 function ResetGame(){
     
@@ -173,4 +198,12 @@ function ResetGame(){
     startDisplayElement.setAttribute("style", "display: block");
     mainDisplayElement.setAttribute("style", "display: none");
     scoreDisplayElement.setAttribute("style", "display: none");
+    endScreenElement.setAttribute("style", "display: none");
+}
+
+function ShowEndGame(){
+    startDisplayElement.setAttribute("style", "display: none");
+    mainDisplayElement.setAttribute("style", "display: none");
+    scoreDisplayElement.setAttribute("style", "display: none");
+    endScreenElement.setAttribute("style", "display: block");
 }

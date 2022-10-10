@@ -14,14 +14,14 @@
         </header>
 
         <!--Start Display-->
-        <section class = "game-display" id = "start-display" data-state = "shown">
+        <section class = "game-display" id = "start-display">
             <div class = "game-text">Test yourself against a time limit to answer all the questions!</div>
             <button class = "game-button" id = "start-game">Start Quiz</button>
             
         </section>
 
         <!--Game Display-->
-        <section class = "game-display" id = "main-display" data-state="hidden">
+        <section class = "game-display" id = "main-display">
             <div class = "game-text" id = "question-display"></div> <!--!Should be centered on the page-->
                 <div>Questions Left: </div><div class = "game-text" id = "questions-left"></div><!--!Make this Inline-->
                 <div class = "game-button" id = "button-holder"></div>
@@ -29,8 +29,19 @@
             <div class = "game-text" id = "score-show">Click this to display high scores</div>
         </section>
 
+        <!--Score Input Display-->
+        <section class="game-display" id = "score-input-display">
+
+            <div class = "game-text">Number Correct: </div><div class = "game-text" id = "correct"></div>
+            <div class = "game-text"> Number Incorrect: </div><div class = "game-text" id = "incorrect"></div>
+
+            <div class = "game-text" id = "initial-prompt"> Enter your Initials to save your score!</div>
+            <input type="text" id="initial-input">
+            <button class = "game-button" id = "save-score-button">Save Score</button>
+        </section>
+
         <!--High Score Display--><!--!This should hide the main display-->
-        <section class="game-display" id = "score-display" data-state="hidden">
+        <section class="game-display" id = "score-display">
             <div class = "game-text">These are the top 5 high scores</div>
                 <div class="game-text" id = "score-holder">This holds the scores</div> 
             <button class = "game-button" id = "clear-scores">Clear Scores</button>
@@ -38,6 +49,7 @@
         </section> 
 
         <button id = "reset">Reset Game</button>
+        <button id = "end-game">end game screen</button>
         <script src = "assets/JS/MainScript.js"></script>
         
     </Body>
